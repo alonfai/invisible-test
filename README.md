@@ -2,7 +2,7 @@
 
 This project takes a given array of inputs in a .txt file (location name, postal code), and does a `console.log` the current time and weather for those locations.
 
-Example: "./weather New York, 10005, Tokyo, São Paulo, Pluto"
+Example: Under main root directory add a file input.txt with the following "New York, 10005, Tokyo, São Paulo, Tel Aviv, Melbourne"
 
 ## NPM modules used
 
