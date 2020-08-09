@@ -53,7 +53,7 @@ Runs the app in the development mode. The app will reload if you make edits.
 
 ### `yarn test`
 
-Launches the test runner with code coverage output under `coverage` folder. It has an integrated coverage reporter that works well with ES6 and requires no configuration.
+Launches the test runner with code coverage output under `coverage` folder. It takes all files with `.spec.*` or  `.test.*` extensions and executes all coding assertions. Furthermore, it will also produce jest built in coverage reporter under `coverage` folder that works well with ES6.
 
 ### `yarn test:watch`
 
@@ -67,7 +67,7 @@ clears the output and coverage folders
 
 execute ESLint and Prettier tooling on the codebase
 
-### `yarn run build`
+### `yarn build`
 
 Builds the app for production to the `build` folder.
 
