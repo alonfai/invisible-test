@@ -1,30 +1,26 @@
-// https://javascript.info/custom-errors
-/**
- * Generic Error object been thrown inside any of the code inputs
- */
 export class Location extends Error {
-  constructor(message?: string) {
+  constructor(message = 'Location.Error') {
     super(message);
     this.name = 'LocationError';
   }
 }
 
 export class Input extends Error {
-  constructor(message?: string) {
+  constructor(message = 'Input.Error') {
     super(message);
     this.name = 'InputError';
   }
 }
 
 export class API extends Error {
-  constructor(message?: string) {
+  constructor(message = 'API.Error') {
     super(message);
     this.name = 'API';
   }
 }
 
-export class Main extends Error {
-  constructor(message?: string) {
+export class App extends Error {
+  constructor(message = 'App.Error') {
     super(message);
     this.name = 'Main';
   }

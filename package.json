@@ -32,8 +32,8 @@
   },
   "scripts": {
     "clean": "rimraf coverage build",
-    "start": "ts-node-dev --respawn -r tsconfig-paths/register ./src/app.ts",
-    "build": "tsc --build tsconfig.release.json",
+    "start": "ts-node-dev --respawn -r tsconfig-paths/register ./src/index.ts",
+    "build": "tsc --outdir ./build",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest --coverage",
     "test:watch": "jest --watch"

@@ -12,8 +12,6 @@ describe('api/weather', () => {
 
   const name = 'sydney';
   const zipCode = 3000;
-  // (axios as any).get.mockImplementation(() => Promise.resolve({ status: 200, data: {} }));
-  // (axios as any).get.mockImplementationOnce(() => Promise.resolve(data));
 
   it('missing name and zipCode input', async () => {
     return expect(getWeather()).rejects.toMatchObject(
@@ -23,7 +21,7 @@ describe('api/weather', () => {
 
   it('call axios and return ApiResponse information from the API', async () => {
     const data = mocks.getWeatherInformation();
-    (axios as any).get.mockResolvedValue({ data });
+    (axios.get as any).mockResolvedValue({ data });
 
     const response = await getWeather(zipCode, name);
     expect(response).toEqual(data);
@@ -32,7 +30,7 @@ describe('api/weather', () => {
 
   it('check for name entry', async () => {
     const data = mocks.getWeatherInformation();
-    (axios as any).get.mockResolvedValue({ data });
+    (axios.get as any).mockResolvedValue({ data });
 
     const response = await getWeather(undefined, name);
     expect(response).toEqual(data);
@@ -41,7 +39,7 @@ describe('api/weather', () => {
 
   it('check for zipCode entry', async () => {
     const data = mocks.getWeatherInformation();
-    (axios as any).get.mockResolvedValue({ data });
+    (axios.get as any).mockResolvedValue({ data });
 
     const response = await getWeather(zipCode);
     expect(response).toEqual(data);
@@ -52,8 +50,10 @@ describe('api/weather', () => {
     (axios.get as any).mockImplementationOnce(() =>
       Promise.reject(new Error('Unable to load data'))
     );
-    return expect(getWeather(zipCode, name)).rejects.toMatch(
-      `Could not fetch data from API server for "${name}" and "${zipCode}" ( Received message: Unable to load data )`
+    return expect(getWeather(zipCode, name)).rejects.toMatchObject(
+      new errors.API(
+        `Could not fetch data from API server for "${name}" and "${zipCode}" ( Received message: Unable to load data )`
+      )
     );
   });
 
@@ -67,8 +67,10 @@ describe('api/weather', () => {
       }
     };
     (axios.get as any).mockImplementationOnce(() => Promise.reject(err));
-    await expect(getWeather(zipCode, name)).rejects.toMatch(
-      `Could not fetch data from API server for "${name}" and "${zipCode}" ( Received message: Unable to load data, statusCode = 500 )`
+    await expect(getWeather(zipCode, name)).rejects.toMatchObject(
+      new errors.API(
+        `Could not fetch data from API server for "${name}" and "${zipCode}" ( Received message: Unable to load data, statusCode = 500 )`
+      )
     );
     expect(axios.get).toHaveBeenCalledTimes(1);
   });
@@ -78,8 +80,10 @@ describe('api/weather', () => {
       request: 'Unable to retireve data from request'
     };
     (axios.get as any).mockImplementationOnce(() => Promise.reject(err));
-    await expect(getWeather(zipCode, name)).rejects.toMatch(
-      `Could not fetch data from API server for "${name}" and "${zipCode}" ( Received message: Unable to retireve data from request )`
+    await expect(getWeather(zipCode, name)).rejects.toMatchObject(
+      new errors.API(
+        `Could not fetch data from API server for "${name}" and "${zipCode}" ( Received message: Unable to retireve data from request )`
+      )
     );
     expect(axios.get).toHaveBeenCalledTimes(1);
   });

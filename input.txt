@@ -1,1 +1,1 @@
-New York, 10005, Tokyo, São Paulo
+New York, 10005, Tokyo, São Paulo, Tel Aviv, Melbourne
