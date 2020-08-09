@@ -1,110 +1,74 @@
-[![Sponsor][sponsor-badge]][sponsor]
-[![TypeScript version][ts-badge]][typescript-39]
-[![Node.js version][nodejs-badge]][nodejs]
-[![APLv2][license-badge]][LICENSE]
-[![Build Status - Travis][travis-badge]][travis-ci]
-[![Build Status - GitHub Actions][gha-badge]][gha-ci]
+# Coding Challenge
 
-# node-typescript-boilerplate
+This project takes a given array of inputs in a .txt file (location name, postal code), and does a `console.log` the current time and weather for those locations.
 
-👩🏻‍💻 Developer Ready: A comprehensive template. Works out of the box for most [Node.js][nodejs] projects.
+Example: "./weather New York, 10005, Tokyo, São Paulo, Pluto"
 
-🏃🏽 Instant Value: All basic tools included and configured:
+## NPM modules used
 
-+ [TypeScript][typescript] [3.9][typescript-39]
-+ [ESLint][eslint] with some initial rules recommendation
-+ [Jest][jest] for fast unit testing and code coverage
-+ Type definitions for Node.js and Jest
-+ [Prettier][prettier] to enforce consistent code style
-+ NPM [scripts](#available-scripts) for common operations
-+ Simple example of TypeScript code and unit test
-+ .editorconfig for consistent file format
-+ Reproducible environments thanks to [Volta][volta]
-+ Example configuration for [GitHub Actions][gh-actions] and [Travis CI][travis]
+In this project, the main npm modules used are
 
-🤲 Free as in speech: available under the APLv2 license.
+* Node 10.x
+* Typescript
+* Jest
+* axios
+* ESLint + Prettier
+* husky + lint-staged (for commiting)
 
-## Getting Started
+## Pre-Requirements
 
-This project is intended to be used with the latest Active LTS release of [Node.js][nodejs].
+It fetching data from 2 3rd party API services for both weather (`https://openweathermap.org/`) and timestamp (`http://api.timezonedb.com`). 
 
-### Use as a repository template
+It needs an API key for each service to be appended to each HTTP request. You can embed this key as a custom environment variable inside the following files:
 
-To start, just click the **[Use template][repo-template-action]** link (or the green button). Now start adding your code in the `src` and unit tests in the `__tests__` directories.
+* .env - add your API keys for each service inside this file or as part of your CI/CD build pipeline
 
-### Clone repository
+> `WEATHER_APPID`  - Weather service <https://openweathermap.org/>
 
-To clone the repository use the following commands:
+> `TIME_APPID` - Time service <http://api.timezonedb.com>
 
-```sh
-git clone https://github.com/jsynowiec/node-typescript-boilerplate
-cd node-typescript-boilerplate
+***
+
+## Install
+
+Close the project using the following command and use either `yarn`/`npm` package managers:
+
+``` node
+git clone https://github.com/alonfai/invisible-test
+
 npm install
-```
 
-### Download latest release
+// or using yarn
 
-Download and unzip current `master` branch or one of tags:
-
-```sh
-wget https://github.com/jsynowiec/node-typescript-boilerplate/archive/master.zip -O node-typescript-boilerplate.zip
-unzip node-typescript-boilerplate.zip && rm node-typescript-boilerplate.zip
+yarn install
 ```
 
 ## Available Scripts
 
-+ `clean` - remove coverage data, Jest cache and transpiled files,
-+ `build` - transpile TypeScript to ES6,
-+ `build:watch` - interactive watch mode to automatically transpile source files,
-+ `lint` - lint source files and tests,
-+ `test` - run tests,
-+ `test:watch` - interactive watch mode to automatically re-run tests
+In the project directory, you can run:
 
-## Additional Informations
+### `yarn start`
 
-### Why include Volta
+Runs the app in the development mode. The app will reload if you make edits.
 
-[Volta][volta]’s toolchain always keeps track of where you are, it makes sure the tools you use always respect the settings of the project you’re working on. This means you don’t have to worry about changing the state of your installed software when switching between projects. For example, it's [used by engineers at LinkedIn][volta-tomdale] to standarize tools and have reproducible development environments.
+### `yarn test`
 
-I recommend to [install][volta-getting-started] Volta and use it to manage your project's toolchain.
+Launches the test runner with code coverage output under `coverage` folder. It has an integrated coverage reporter that works well with ES6 and requires no configuration.
 
-### Writing tests in JavaScript
+### `yarn test:watch`
 
-Writing unit tests in TypeScript can sometimes be troublesome and confusing. Especially when mocking dependencies and using spies.
+Launches the test runner in the interactive watch mode.
 
-This is **optional**, but if you want to learn how to write JavaScript tests for TypeScript modules, read the [corresponding wiki page][wiki-js-tests].
+### `yarn clean`
 
-## Backers & Sponsors
+clears the output and coverage folders
 
-Support this project by becoming a [sponsor][sponsor].
+### `yarn lint`
 
-## License
-Licensed under the APLv2. See the [LICENSE](https://github.com/jsynowiec/node-typescript-boilerplate/blob/master/LICENSE) file for details.
+execute ESLint and Prettier tooling on the codebase
 
-[ts-badge]: https://img.shields.io/badge/TypeScript-3.9-blue.svg
-[nodejs-badge]: https://img.shields.io/badge/Node.js->=%2012.13-blue.svg
-[nodejs]: https://nodejs.org/dist/latest-v12.x/docs/api/
-[travis-badge]: https://travis-ci.org/jsynowiec/node-typescript-boilerplate.svg?branch=master
-[travis-ci]: https://travis-ci.org/jsynowiec/node-typescript-boilerplate
-[gha-badge]: https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fjsynowiec%2Fnode-typescript-boilerplate%2Fbadge&style=flat
-[gha-ci]: https://github.com/jsynowiec/node-typescript-boilerplate/actions
-[typescript]: https://www.typescriptlang.org/
-[typescript-39]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-9.html
-[license-badge]: https://img.shields.io/badge/license-APLv2-blue.svg
-[license]: https://github.com/jsynowiec/node-typescript-boilerplate/blob/master/LICENSE
+### `yarn run build`
 
-[sponsor-badge]: https://img.shields.io/badge/♥-Sponsor-fc0fb5.svg
-[sponsor]: https://github.com/sponsors/jsynowiec
+Builds the app for production to the `build` folder.
 
-[jest]: https://facebook.github.io/jest/
-[eslint]: https://github.com/eslint/eslint
-[wiki-js-tests]: https://github.com/jsynowiec/node-typescript-boilerplate/wiki/Unit-tests-in-plain-JavaScript
-[prettier]: https://prettier.io
-[volta]: https://volta.sh
-[volta-getting-started]: https://docs.volta.sh/guide/getting-started
-[volta-tomdale]: https://twitter.com/tomdale/status/1162017336699838467?s=20
-
-[gh-actions]: https://github.com/features/actions
-[travis]: https://travis-ci.org
-
-[repo-template-action]: https://github.com/jsynowiec/node-typescript-boilerplate/generate
+You can then deploy the app to your production environment and/or add this as part of your CI/CD pipeline
