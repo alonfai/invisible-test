@@ -16,10 +16,11 @@ module.exports = {
     '<rootDir>/setup',
     `<rootDir>/src`
   ],
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|js)x?$',
+  testMatch: ["<rootDir>/src/**/*.+(spec|test).[jt]s?(x)" ],
   coverageDirectory: 'coverage',
   collectCoverageFrom: [
     'src/**/*.{ts,tsx,js,jsx}',
+    '!build',
     '!src/**/*.d.ts',
     '!src/**/index.ts'
   ],
