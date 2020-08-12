@@ -1,4 +1,4 @@
-# Coding Challenge
+# Node.js + TypeScript demo
 
 This project takes a given array of inputs in a .txt file (location name, postal code), and does a `console.log` the current time and weather for those locations.
 
